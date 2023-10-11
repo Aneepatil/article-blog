@@ -1,7 +1,13 @@
-import { Schema, model } from "mongoose";
+import mongoose, { Schema, model } from "mongoose";
+import slugify from 'slugify'
 
 const articleSchema = new Schema(
   {
+    userId: {
+      type: mongoose.Schema.Types.ObjectId,
+      ref: 'UserModel',
+      required: true,
+    },
     title: {
       type: String,
       required: true,

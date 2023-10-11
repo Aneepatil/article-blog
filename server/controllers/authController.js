@@ -1,7 +1,11 @@
 import { User } from "../model/UserModel.js";
 import { appError } from "../utils/appError.js";
+import { comparePassword } from "../utils/comparePassword.js";
 import { hashPassword } from "../utils/hashPassword.js";
+import { generateToken } from './../utils/generateToken.js';
 
+
+// Register User
 export const signUp = async (req, res, next) => {
   const { username, email, password } = req.body;
   try {
@@ -28,6 +32,8 @@ export const signUp = async (req, res, next) => {
   }
 };
 
+
+// Login User
 export const signIn = async (req, res, next) => {
   const { email, password } = req.body;
   try {

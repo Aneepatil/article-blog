@@ -2,6 +2,7 @@ import { User } from "../model/UserModel.js";
 import { appError } from "../utils/appError.js";
 import { hashPassword } from "../utils/hashPassword.js";
 
+// Get all Users
 export const getUsers = async (req, res, next) => {
   try {
     const users = await User.find();
@@ -15,6 +16,7 @@ export const getUsers = async (req, res, next) => {
   }
 };
 
+// Get Single User
 export const getUser = async (req, res, next) => {
   try {
     const user = await User.findById(req.params.id);
@@ -33,10 +35,12 @@ export const getUser = async (req, res, next) => {
   }
 };
 
+// Update User
+
 export const updateUser = async (req, res, next) => {
-  // if (req.user!== req.params.id) {
-  //     return next(appError(403, "You only can update your own account"));
-  //   }
+  if (req.user !== req.params.id) {
+    return next(appError(403, "You only can update your own account"));
+  }
 
   try {
     // Hash the password again
@@ -69,8 +73,10 @@ export const updateUser = async (req, res, next) => {
   }
 };
 
+// Delete User
 export const deleteUser = async (req, res, next) => {
-  if (req.user.id !== req.params.id)
+  console.log(req.user);
+  if (req.user !== req.params.id)
     return next(appError(401, "You can only delete your own account!"));
   try {
     await User.findByIdAndDelete(req.params.id);
