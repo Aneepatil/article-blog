@@ -1,11 +1,11 @@
 import mongoose, { Schema, model } from "mongoose";
-import slugify from 'slugify'
+import slugify from "slugify";
 
 const articleSchema = new Schema(
   {
     userId: {
       type: mongoose.Schema.Types.ObjectId,
-      ref: 'UserModel',
+      ref: "UserModel",
       required: true,
     },
     title: {
@@ -21,6 +21,10 @@ const articleSchema = new Schema(
       type: String,
       required: true,
       trim: true,
+    },
+    date: {
+      type: Date,
+      default: Date.now,
     },
     slug: {
       type: String,

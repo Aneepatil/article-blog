@@ -46,7 +46,27 @@ export const article = async (req, res, next) => {
       message: "Article fetched successfully",
       data: article,
     });
-  } catch (error) {}
+  } catch (error) {
+    next(error)
+  }
+};
+
+
+// Sort article
+
+export const sortArticle = async (req, res, next) => {
+  const fromDate = new Date(req.query.fromDate)
+  const toDate = new Date(req.query.toDate)
+  try {
+    const sortedArticle = await Article.find({date:{$gte:fromDate,$lte:toDate}});
+    res.status(200).json({
+      success: true,
+      message: "Sorted Article fetched successfully",
+      data: sortedArticle,
+    });
+  } catch (error) {
+    next(error)
+  }
 };
 
 
