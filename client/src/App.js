@@ -1,10 +1,10 @@
 import React from "react";
 import { Route, Routes } from "react-router-dom";
 import Header from "./components/Header";
-import ArticleListing from "./pages/ArticleListing";
-import CreateArticle from "./pages/CreateArticle";
-import SignIn from "./pages/SignIn";
-import SignUp from "./pages/SignUp";
+import ArticleListing from './pages/Articles/ArticleListing';
+import CreateArticle from "./pages/Articles/CreateArticle";
+import SignIn from "./pages/Auth/SignIn";
+import SignUp from './pages/Auth/SignUp';
 
 const App = () => {
   return (
